@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/renderer.js" defer></script>
+  <title>ImageResizer</title>
+</head>
+
+<body class="bg-teal-700">
+
+  <div class="max-w-xl m-auto h-screen flex flex-col align-center justify-center">
+    <div class="flex flex-col w-full items-center justify-center bg-grey-lighter">
+      <label
+        class="w-32 flex flex-col items-center px-4 py-7 bg-white text-gray-500 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:text-teal-800">
+        <img src="./images/applogo.svg" width="32" />
+        <span class="mt-2 leading-normal">Select an image to resize</span>
+        <input id="img" type="file" class="hidden" />
+      </label>
+      <p class="text-white text-lg text-center font-mono mt-6"><strong>File: </strong><span id="filename"></span></p>
+      <label class="text-white text-lg text-center font-mono mt-1">With: <span id="width"></span></label>
+      <label class="text-white text-lg text-center font-mono mt-1">Height: <span id="height"></span></label>
+    </div>
+
+    <!-- Form -->
+    <form id="img-form" class="text-white font-mono text-sm mt-2 hidden">
+      <!-- Select -->
+      <div class="select-brand">
+        <div class="ios-logo">
+          <h3>iOS</h3>
+          <div class="appstore-icon">
+            <input type="checkbox" value="appstore-icon" id="appstore-icon">
+            <label for="appstore-icon"> App Store Icon (1024x1024) </label>
+          </div>
+          <div class="iphone-notification">
+            <ul>
+              <li>
+                <input type="checkbox" value="iphone-notification-2x" id="iphone-notification-2x">
+                <label for="iphone-notification"> iPhone Notification 2x (40x40) </label>
+              </li>
+              <li>
+                <input type="checkbox" value="iphone-notification-3x" id="iphone-notification-3x">
+                <label for="iphone-notification"> iPhone Notification 3x (60x60) </label>
+              </li>
+            </ul>
+          </div>
+          <div class="iphone-settings">
+            <ul>
+              <li>
+                <input type="checkbox" value="iphone-settings-2x" id="iphone-settings-2x">
+                <label for="spotlight-icon"> iPhone settings 2x (58x58) </label>
+              </li>
+              <li>
+                <input type="checkbox" value="iphone-settings-3x" id="iphone-settings-3x">
+                <label for="spotlight-icon"> Phone settings 3x (87x87) </label>
+              </li>
+            </ul>
+          </div>
+          <div class="spotlight-icon">
+            <ul>
+              <li>
+                <input type="checkbox" value="iphone-spotlight-2x" id="iphone-spotlight-2x">
+                <label for="spotlight-icon"> Spotlight 2x (80x80) </label>
+              </li>
+              <li>
+                <input type="checkbox" value="iphone-spotlight-3x" id="iphone-spotlight-3x">
+                <label for="spotlight-icon"> Spotlight 3x (120x120) </label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="iphone-app">
+            <ul>
+              <li><input type="checkbox" value="iphone-app-2x" id="iphone-app-2x">
+                <label for="iphone-app"> iPhone App 2x (120x120) </label>
+              </li>
+              <li>
+                <input type="checkbox" value="iphone-app-3x" id="iphone-app-3x">
+                <label for="iphone-app"> iPhone App 3x (180x180) </label>
+              </li>
+            </ul>
+          </div>
+      </div>
+
+      <div id="android-logo">
+          <h3>ANDROID</h3>
+          <div class="mipmap-mdpi">
+            <h4>mipmap-mdpi (48x48)</h4>
+            <div class="selection">
+              <div class="normal">
+                <input type="checkbox" id="mdpi-normal" name="mdpi-normal" value="mdpi-normal">
+                <label for="mdpi-normal"> normal</label>
+              </div>
+
+              <div class="rounded">
+                <input type="checkbox" id="mdpi-rounded" name="mdpi-rounded" value="mdpi-rounded">
+                <label for="mdpi-rounded"> rounded</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mipmap-hdpi">
+            <h4>mipmap-hdpi (72x72)</h4>
+            <div class="selection">
+              <div class="normal">
+                <input type="checkbox" id="hdpi-normal" name="hdpi-normal" value="hdpi-normal">
+                <label for="hdpi-normal"> normal</label>
+              </div>
+
+              <div class="rounded">
+                <input type="checkbox" id="hdpi-rounded" name="hdpi-rounded" value="hdpi-rounded">
+                <label for="hdpi-rounded"> rounded</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mipmap-xhdpi">
+            <h4>mipmap-xhdpi (96x96)</h4>
+            <div class="selection">
+              <div class="normal">
+                <input type="checkbox" id="xhdpi-normal" name="xhdpi-normal" value="xhdpi-normal">
+                <label for="xhdpi-normal"> normal</label>
+              </div>
+
+              <div class="rounded">
+                <input type="checkbox" id="xhdpi-rounded" name="xhdpi-rounded" value="xhdpi-rounded">
+                <label for="xhdpi-rounded"> rounded</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mipmap-xxhdpi">
+            <h4>mipmap-xxhdpi (144x144)</h4>
+            <div class="selection">
+              <div class="normal">
+                <input type="checkbox" id="xxhdpi-normal" name="xxhdpi-normal" value="xxhdpi-normal">
+                <label for="xxhdpi-normal"> normal</label>
+              </div>
+
+              <div class="rounded">
+                <input type="checkbox" id="xxhdpi-rounded" name="xxhdpi-rounded" value="xxhdpi-rounded">
+                <label for="xxhdpi-rounded"> rounded</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mipmap-xxxhdpi">
+            <h4>mipmap-xxxhdpi (192x192)</h4>
+            <div class="selection">
+              <div class="normal">
+                <input type="checkbox" id="xxxhdpi-normal" name="xxxhdpi-normal" value="xxxhdpi-normal">
+                <label for="xxxhdpi-normal"> normal</label>
+              </div>
+
+              <div class="rounded">
+                <input type="checkbox" id="xxxhdpi-rounded" name="xxxhdpi-rounded" value="xxxhdpi-rounded">
+                <label for="xxxhdpi-rounded"> rounded</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="mt-6">
+        <button type="submit"
+          class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Resize
+        </button>
+
+    </form>
+
+
+    <p class="text-white text-lg text-center font-mono mt-2"><strong>Output: </strong><span id="output-path"></span></p>
+  </div>
+  <div class="info" style="margin-top: 50px;">
+    <p class="text-white text-lg text-center font-mono mt-4">Delevoped By: Uğur Atakan Sürmeli</p>
+    <p class="text-white text-lg text-center font-mono mt-4">Github: Ugur-Atakan</p>
+    <p class="text-white text-lg text-center font-mono mt-4">Forked from git@bradtraversy</p>
+  </div>
+
+  <style>
+    .select-brand {
+      border-color: black;
+      border-style: solid;
+      min-width: fit-content;
+      display: flex;
+      flex-direction: row;
+      margin: 10px;
+      justify-content: space-between;
+    }
+
+    .selection {
+      border-color: black;
+      border-style: solid;
+      min-width: fit-content;
+      display: flex;
+      width: 300px;
+      justify-content: space-around;
+
+    }
+  </style>
+</body>
+
+</html>
